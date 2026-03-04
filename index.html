@@ -108,10 +108,6 @@
       <label>Nombre y apellido</label>
       <input id="name" placeholder="Nombre Apellido" value="">
     </div>
-    <div>
-      <label>Email</label>
-      <input id="email" placeholder="nombre.apellido@glofy.co" value="">
-    </div>
   </div>
 
   <div class="row">
@@ -153,9 +149,6 @@
 
   <script>
     // ====== HARD CODED (hidden from user) ======
-    const GLOFY_LOGO_URL = "https://raw.githubusercontent.com/comms-glofy/glofy-assets/refs/heads/main/logo-glofy.png";
-    const GLOFY_LOGO_LINK = "https://glofy.co";
-    const GLOFY_LOGO_HEIGHT_PX = 32;      // fixed (not user-editable)
     const PHOTO_WIDTH_PX = 80;            // fixed (you can change here if needed)
 
     const CONFIDENTIALITY_NOTICE =
@@ -170,7 +163,6 @@
 
     function renderSignature(){
       const name = esc(document.getElementById("name").value.trim());
-      const email = esc(document.getElementById("email").value.trim());
       const title = esc(document.getElementById("title").value.trim());
       const dept = esc(document.getElementById("dept").value.trim());
       const websiteRaw = "https://glofy.co";
@@ -184,21 +176,12 @@
       const photoStyle = `display:block; width:${PHOTO_WIDTH_PX}px; height:auto;`;
 
       // LinkedIn always visible as text link when provided
-      const linkedinBlock = linkedinRaw
-        ? `<div style="margin-top:6px; ${font} font-size:13px; line-height:18px;">
-             <a href="${esc(linkedinRaw)}" target="_blank" style="color:#2563eb; text-decoration:none; ${font}">LinkedIn</a>
-           </div>`
-        : "";
+    const linkedinBlock = linkedinRaw
+  ? `<div style="margin-top:6px; ${font} font-size:13px; line-height:18px;">
+       <a href="${esc(linkedinRaw)}" target="_blank" style="color:#2563eb; text-decoration:none; ${font}">LinkedIn</a>
+     </div>`
+  : "";
 
-      // Logo inside details (below website/email line)
-      const logoBlock = `
-        <div style="margin-top:10px;">
-          <a href="${esc(GLOFY_LOGO_LINK)}" target="_blank" style="text-decoration:none;">
-            <img src="${esc(GLOFY_LOGO_URL)}" height="${GLOFY_LOGO_HEIGHT_PX}"
-                 style="display:block; height:${GLOFY_LOGO_HEIGHT_PX}px; width:auto;" alt="Glofy" />
-          </a>
-        </div>
-      `;
 
       const html = `
         <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">
@@ -222,12 +205,9 @@
 
               <div style="margin-top:4px; ${font} font-size:13px; line-height:18px;">
                 <a href="${esc(websiteRaw)}" target="_blank" style="color:#2563eb; text-decoration:none; ${font}">glofy.co</a>
-                ${email ? `<span style="color:#9ca3af;">&nbsp;|&nbsp;</span>
-                           <a href="mailto:${email}" style="color:#2563eb; text-decoration:none; ${font}">${email}</a>` : ""}
               </div>
 
               ${linkedinBlock}
-              ${logoBlock}
             </td>
           </tr>
         </table>
@@ -263,8 +243,9 @@
     }
 
     function clearAll(){
-      ["name","email","title","dept","linkedin","photo"].forEach(id => {
-        document.getElementById(id).value = "";
+          ["name","title","dept","linkedin","photo"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
       });
       document.getElementById("website").value = "https://glofy.co";
       document.getElementById("signatureToCopy").innerHTML = "";
