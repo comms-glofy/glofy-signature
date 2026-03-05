@@ -112,12 +112,8 @@
 
   <div class="row">
     <div>
-      <label>Puesto / Title</label>
+      <label>Puesto</label>
       <input id="title" placeholder="Indica tu puesto" value="">
-    </div>
-    <div>
-      <label>Dept</label>
-      <input id="dept" placeholder="Ejemplo: HR Dept" value="">
     </div>
   </div>
 
@@ -164,7 +160,6 @@
     function renderSignature(){
       const name = esc(document.getElementById("name").value.trim());
       const title = esc(document.getElementById("title").value.trim());
-      const dept = esc(document.getElementById("dept").value.trim());
       const websiteRaw = "https://glofy.co";
       const linkedinRaw = document.getElementById("linkedin").value.trim();
       const photoRaw = document.getElementById("photo").value.trim();
@@ -198,11 +193,6 @@
               <div style="${font} font-size:13px; font-weight:400; line-height:18px; color:#111827; margin-top:2px;">
                 ${title || ""}
               </div>
-
-              <div style="${font} font-size:13px; font-style:italic; line-height:18px; color:#111827;">
-                ${dept || ""}
-              </div>
-
               <div style="margin-top:4px; ${font} font-size:13px; line-height:18px;">
                 <a href="${esc(websiteRaw)}" target="_blank" style="color:#2563eb; text-decoration:none; ${font}">glofy.co</a>
               </div>
@@ -243,7 +233,7 @@
     }
 
     function clearAll(){
-          ["name","title","dept","linkedin","photo"].forEach(id => {
+          ["name","title","linkedin","photo"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = "";
       });
