@@ -232,15 +232,16 @@
         : "No puede copiar automáticamente. Seleccioná la firma y copiá manualmente (Ctrl/Cmd+C).";
     }
 
-    function clearAll(){
-          ["name","title","linkedin","photo"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
-      });
-      document.getElementById("website").value = "https://glofy.co";
-      document.getElementById("signatureToCopy").innerHTML = "";
-      document.getElementById("toast").textContent = "Listo. Campos limpiados.";
-    }
+   function clearAll(){
+  ["name","title","linkedin","photo"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  document.getElementById("signatureToCopy").innerHTML = "";
+  document.getElementById("toast").textContent = "Listo. Campos limpiados.";
+}
   </script>
 </body>
 </html>
+
+
